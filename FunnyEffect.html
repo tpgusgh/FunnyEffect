@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool CSS Effects</title>
+    <style>
+        /* 배경 그라데이션 애니메이션 */
+        body {
+            background: linear-gradient(270deg, #ff7eb3, #ff758c, #ff7eb3);
+            background-size: 400% 400%;
+            animation: gradientBG 8s ease infinite;
+            overflow-x: hidden;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 항상 흔들리는 텍스트 */
+        .shaky-text {
+            display: inline-block;
+            animation: shake 0.2s infinite;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            50% { transform: translateX(2px); }
+            75% { transform: translateX(-2px); }
+            100% { transform: translateX(2px); }
+        }
+
+        /* 네온사인 효과 */
+        .neon-text {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff;
+            animation: neonGlow 1.5s infinite alternate;
+        }
+        @keyframes neonGlow {
+            from { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; }
+            to { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+        }
+
+        /* 타이핑 효과 */
+        .typing-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid white;
+            width: 0;
+            animation: typing 3s steps(30) forwards, blink 0.5s infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* 무지개 텍스트 애니메이션 */
+        .rainbow-text {
+            font-size: 2em;
+            font-weight: bold;
+            background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow 3s linear infinite;
+        }
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* SVG 선 그리기 애니메이션 */
+        .svg-draw {
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: draw 3s linear forwards;
+        }
+        @keyframes draw {
+            from { stroke-dashoffset: 300; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* 버튼 물결 효과 */
+        .ripple-button {
+            position: relative;
+            overflow: hidden;
+            padding: 10px 20px;
+            background: #ff758c;
+            color: white;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+            outline: none;
+            border-radius: 5px;
+        }
+        .ripple-button::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.5s ease-out;
+            pointer-events: none;
+        }
+        .ripple-button:active::after {
+            transform: scale(4);
+        }
+    </style>
+</head>
+<body>
+    <h1 class="shaky-text">흔들리는 텍스트!</h1>
+    <h2 class="neon-text">네온사인 효과</h2>
+    <h3 class="masked-text">마스크 효과 텍스트</h3>
+    <h4 class="typing-text">이 텍스트는 타이핑 효과가 적용됨!</h4>
+    
+    <h2 class="wave-text">
+        <span>W</span><span>A</span><span>V</span><span>E</span><span>!</span>
+    </h2>
+    
+    <h2 class="rainbow-text">무지개 색이 돌아가는 텍스트</h2>
+    
+    <button class="ripple-button">눌러보세요</button>
+
+    <!-- SVG 드로잉 애니메이션 -->
+    <svg width="200" height="100">
+        <line class="svg-draw" x1="10" y1="50" x2="190" y2="50" stroke="black" stroke-width="4" />
+    </svg>
+    
+    <script>
+        // 마우스 따라다니는 효과 스크립트
+        const cursor = document.createElement("div");
+        cursor.classList.add("cursor-trail");
+        document.body.appendChild(cursor);
+
+        document.addEventListener("mousemove", (e) => {
+            cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+        });
+    </script>
+</body>
+</html>
